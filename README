@@ -1,0 +1,72 @@
+dns 0.01
+Public Domain
+Jonah Burke, jonah@jonahb.com
+
+dns is an interactive program that lets you query the Domain Name System.
+I wrote it to learn about the DNS.
+
+BUILDING
+--------
+
+$ ant
+
+
+USAGE
+-----
+
+$ java -jar dns nameserver-ip-address nameserver-port
+
+Example:
+$ java -jar dns 8.8.8.8 53
+
+
+COMMANDS
+--------
+
+resolve (r) - resolves a host name to an IP address
+
+  Usage:   resolve domain
+  Example: resolve jonahb.com
+
+  If no command is entered (i.e., just a domain name), the resolve command is 
+  executed by default. Thus you may resolve jonahb.com with the command
+  "r jonahb.com" or just "jonahb.com".
+
+query (q) - performs a general lookup
+
+  Usage:   query [options] domain [query-type [query-class]]
+  Options: -nr non-recursive query
+  Example: query -nr jonahb.com cname
+
+  query-type may be a resource record type (e.g. A, CNAME, MX) or "*" or
+  "All". query-class may be "Internet", "Hesiod", "CHAOS", "*", or "Any".  
+
+  If either of query-type or query-class is not specified, the setting is used
+  (see documentation for set command).
+
+reverse (v) - performs a reverse lookup, finding the domain for an IP address
+
+  Usage:   reverse ip-address
+  Example: reverse 66.33.211.117
+
+trace (t) - simulates an iterative resolution of a host name to an IP address
+  by (1) finding the host's canonical name, if any; (2) printing the name
+  server for each domain in the hierarchy; (3) printing the ip address of the
+  host.
+
+  Usage:   trace domain
+  Example: trace jonahb.com
+
+set (s) - changes settings
+
+  Usage:  set [querytype | qt]  query-type
+          set [queryclass | qc] query-class
+          set [nameserver | ns] ip-address [port]
+
+  The querytype and queryclass settings only apply to the query (q) command.
+  The nameserver setting applies to all commands. If the port is not
+  specified, the default DNS port (53) is used.
+
+quit (exit) - quits the program
+
+  Usage:  quit

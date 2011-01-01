@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="dns" basedir="." default="jar">
+  <description>Builds, tests, and runs the project DNSClient.</description>
+  <property name="src" value="./src"/>
+  <property name="classes" value="./classes"/>
+  <target name="build">
+    <mkdir dir="${classes}"/>
+    <javac srcdir="${src}" destdir="${classes}" includeantruntime="false"/>
+  </target>
+  <target name="jar" depends="build">
+    <jar destfile="dns.jar" basedir="classes">
+      <manifest>
+        <attribute name="Main-Class" value="jonahb.dns.client.Program"/>
+      </manifest>
+    </jar>
+  </target>
+</project>
